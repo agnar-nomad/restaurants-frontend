@@ -11,11 +11,14 @@ export const RootLayout = async ({ children }: RootLayoutProps) => {
   const data = await getData();
 
   return (
-    <div id="__waku" className="font-['Nunito']">
+    <div id="__waku" className="font-['Nunito'] min-h-svh min-w-80 max-w-7xl mx-auto">
       <meta property="description" content={data.description} />
       <link rel="icon" type="image/png" href={data.icon} />
+      <title>Obedy Profitak</title>
+      {/* metadata */}
+      
       <Header />
-      <main className="flex min-h-svh items-center justify-center *:min-h-64 *:min-w-64">
+      <main className="min-h-svh grid items-center min-w-80 p-4">
         {children}
       </main>
       <Footer />
@@ -26,7 +29,7 @@ export const RootLayout = async ({ children }: RootLayoutProps) => {
 const getData = async () => {
   const data = {
     description: 'An internet website!',
-    icon: '/images/favicon.png',
+    icon: '/images/lunch.png',
   };
 
   return data;

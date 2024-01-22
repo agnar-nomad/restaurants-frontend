@@ -23,6 +23,9 @@ module.exports = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        profitakRed: "hsl(var(--profitak-red))",
+        profitakOrange: "hsl(var(--profitak-orange))",
+        profitakBlack: "hsl(var(--profitak-black))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",

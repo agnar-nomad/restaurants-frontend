@@ -1,6 +1,5 @@
 import { Link } from 'waku';
 
-import { Counter } from '../components/counter.js';
 import RestaurantPanel from '../components/RestaurantPanel.js';
 
 type RestData = {
@@ -18,7 +17,6 @@ export type RestInfoType = {
 
 export const HomePage = async () => {
   const data = await getData()
-  // console.log('HomePage data', data);
   const transformedData: RestData = {
     ...data,
     data: data.data.map(item => ({
@@ -27,39 +25,37 @@ export const HomePage = async () => {
     }))
   }
 
-  
   const rest = transformedData.data[0];
   // console.log('HomePage transformedData', transformedData);
-  // console.log('HomePage rest', rest);
-  
-  
 
   return (
-    <div>
+    <section>
       <title>{data.title}</title>
       {/* metadata */}
 
-      <h1>{data.title}</h1>
-      <p>{data.body}</p>
+      <h1 className="text-2xl font-bold">Dnesni Obedy</h1>
+      {/* <p>{data.body}</p>
       <Counter />
-      <Link to="/about">Learn more</Link>
+      <Link to="/about">Learn more</Link> */}
       <br/>
 
-      <div className="grid gap-6">
-      {rest !== undefined ?
-        <RestaurantPanel rest={rest} key={rest.id}/>
+      <div className="grid gap-6 w-full">
+      {transformedData.data.length > 0 ?
+        transformedData.data.map(rest => (
+          <RestaurantPanel rest={rest} key={rest.id}/>
+        ))
       : null}
       </div>
 
       
-    </div>
+    </section>
   );
 };
 
 const getData = async () => {
   const data = 
   {
-    "title": 'Waku',
+    "title": 'Obedy',
     "body": 'Hello world!',
     "message": "success",
     "data": [

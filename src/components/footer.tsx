@@ -1,6 +1,6 @@
 export const Footer = () => {
   return (
-    <footer className="fixed bottom-0 left-0 p-6">
+    <footer className="p-4">
       <div>
         visit{' '}
         <a href="https://waku.gg/" target="_blank" rel="noreferrer">

@@ -34,6 +34,10 @@
     --ring: 222.2 84% 4.9%;
  
     --radius: 0.5rem;
+
+    --profitak-red: 346 72% 29%;
+    --profitak-orange: 19 100% 53.5%;
+    --profitak-black: 0 0% 8.6%;
   }
  
   .dark {
