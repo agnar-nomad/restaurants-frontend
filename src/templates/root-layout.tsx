@@ -3,7 +3,7 @@ import '../styles.css';
 import type { ReactNode } from 'react';
 import Header from '../components/header.js';
 import Footer from '../components/footer.js';
-import { ThemeProvider } from '../components/ThemeProvider.js';
+import { ThemeProvider } from '../contexts/theme-provider.js';
 
 type RootLayoutProps = { children: ReactNode };
 

@@ -1,6 +1,6 @@
 import { Link } from 'waku';
 
-import RestaurantPanel from '../components/RestaurantPanel.js';
+import RestaurantPanel from '../components/restaurant-panel.js';
 
 type RestData = {
   title: string,

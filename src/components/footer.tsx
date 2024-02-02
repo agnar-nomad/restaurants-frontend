@@ -1,4 +1,4 @@
-import { ModeToggle } from "./DarkModeToggle.js";
+import { ModeToggle } from "./dark-mode-toggle.js";
 
 export default function Footer() {
   return (
