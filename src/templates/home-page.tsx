@@ -63,7 +63,7 @@ const getData = async () => {
         "id": 1,
         "name": "Pago Restaurant",
         "date": "2024-01-22T09:25:41.862Z",
-        "meals": "[\"Beef Asado\",\"Fettucine alfredo\",\"Beef Asado\",\"Shakshuka\",\"Chicken Fajita Mac and Cheese\"]"
+        "meals": "[\"Beef Asado\",\"Fettucine alfredo\",\"Beef Burger with Tartar Baked Potatoes\",\"Shakshuka\",\"Chicken Fajita Mac and Cheese\"]"
       },
       {
         "id": 2,
@@ -75,7 +75,7 @@ const getData = async () => {
         "id": 3,
         "name": "Bagel Lounge Florenc",
         "date": "2024-01-22T09:25:41.864Z",
-        "meals": "[\"Vegetarian Casserole\",\"Vegetarian Casserole\",\"Dal fry\",\"Lamb and Potato pie\",\"Matar Paneer\"]"
+        "meals": "[\"Vegetarian Casserole\",\"Vegetarian Linguini with Tomatoes\",\"Dal fry\",\"Lamb and Potato pie\",\"Matar Paneer\"]"
       },
       {
         "id": 4,
@@ -87,7 +87,7 @@ const getData = async () => {
         "id": 5,
         "name": "Restaurace Mlynec",
         "date": "2024-01-22T09:25:41.864Z",
-        "meals": "[\"Nanaimo Bars\",\"Hot and Sour Soup\",\"Christmas cake\",\"Tuna Nicoise\",\"Spotted Dick\"]"
+        "meals": "[\"Nanaimo Bars\",\"Hot and Sour Soup\",\"Christmas cake\",\"Tuna Nicoise\",\"Spotted Rice with Thai Pad\"]"
       }
     ]
   }
