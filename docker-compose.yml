@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: profitak-fe
+    image: profitakobedy
+    working_dir: /app
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      NODE_ENV: production
+    ports:
+      # - 8080:8080
+      - 5000:8080
