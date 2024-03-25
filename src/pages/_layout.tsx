@@ -7,11 +7,11 @@ import { ThemeProvider } from '../contexts/theme-provider.js';
 
 type RootLayoutProps = { children: ReactNode };
 
-export const RootLayout = async ({ children }: RootLayoutProps) => {
+export default async function RootLayout({ children }: RootLayoutProps) {
   const data = await getData();
 
   return (
-    <div id="__waku" className="min-h-svh min-w-80 max-w-7xl mx-auto">
+    <div className="min-h-svh min-w-80 max-w-7xl mx-auto">
       <meta property="description" content={data.description} />
       <link rel="icon" type="image/png" href={data.icon} />
       <title>Obedy Profitak</title>
@@ -36,3 +36,9 @@ const getData = async () => {
 
   return data;
 };
+
+export const getConfig = async () => {
+    return {
+      render: 'static',
+    };
+  };

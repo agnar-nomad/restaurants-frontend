@@ -15,7 +15,7 @@ export type RestInfoType = {
   meals: string[]
 };
 
-export const HomePage = async () => {
+export default async function HomePage() {
   const data = await getData()
   const transformedData: RestData = {
     ...data,
@@ -96,3 +96,9 @@ const getData = async () => {
 
   return data;
 };
+
+export const getConfig = async () => {
+    return {
+      render: 'dynamic',
+    };
+  };
