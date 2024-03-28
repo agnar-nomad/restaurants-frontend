@@ -1,19 +1,8 @@
 import { Link } from 'waku';
 
 import RestaurantPanel from '../components/restaurant-panel.js';
-
-type RestData = {
-  title: string,
-  body: string,
-  message: string,
-  data: RestInfoType[]
-}
-export type RestInfoType = {
-  id: number;
-  name: string;
-  date: string;
-  meals: string[]
-};
+import { RestData } from '../lib/types.js';
+import { getRestaurantMenus } from '../lib/api.js';
 
 export default async function HomePage() {
   const data = await getData()
@@ -28,25 +17,40 @@ export default async function HomePage() {
   const rest = transformedData.data[0];
   // console.log('HomePage transformedData', transformedData);
 
+  const data2 = await getRestaurantMenus();
+  const menus = data2?.data;
+
+  console.log('menus', menus);
+  
+
+  if(!menus) {
+    return <p>No restaurant data</p>
+  }
+
   return (
     <section>
-      <title>{data.title}</title>
-      {/* metadata */}
+        <title>{data.title}</title>
+        {/* metadata */}
 
-      <h1 className="text-2xl font-bold">Dnesni Obedy</h1>
-      {/* <p>{data.body}</p>
-      <Counter />
-      <Link to="/about">Learn more</Link> */}
-      <br/>
+        <h2 className="text-2xl font-bold">Dnesni Obedy</h2>
+        {/* <p>{data.body}</p> */}
+        <br/>
 
-      <div className="grid gap-6 w-full">
-      {transformedData.data.length > 0 ?
-        transformedData.data.map(rest => (
-          <RestaurantPanel rest={rest} key={rest.id}/>
-        ))
-      : null}
-      </div>
-
+        {/* <div className="grid gap-6 w-full">
+        {transformedData.data.length > 0 ?
+            transformedData.data.map(rest => (
+            <RestaurantPanel rest={rest} key={rest.id}/>
+            ))
+        : null}
+        </div> */}
+        
+        <div className="grid gap-6 w-full">
+        {menus.length > 0 ?
+            menus.map(restaurant => (
+                <RestaurantPanel restaurant={restaurant} key={restaurant.name}/>
+            ))
+        : null}
+        </div>
       
     </section>
   );

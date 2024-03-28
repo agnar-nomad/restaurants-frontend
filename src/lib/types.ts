@@ -24,16 +24,15 @@ export type Restaurant = {
     url?: string,
     accepts_cards?: boolean,
     last_scrape: string,
-    meals: DailyMenu[]
+    meals: DailyMenu
 }
 
 type DailyMenu = {
-    [day: string]: MenuItems
+    [day: string]: Meal[] | undefined
 }
 
-type MenuItems = MenuItem[]
 
-type MenuItem = {
+export type Meal = {
     name: string,
     price: number,
     description?: string,
@@ -41,5 +40,4 @@ type MenuItem = {
     is_vegan?: boolean,
     is_gluten_free?: boolean,
     is_soup?: boolean,
-
 }

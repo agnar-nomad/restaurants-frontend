@@ -30,7 +30,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
 
 const getData = async () => {
   const data = {
-    description: 'An internet website!',
+    description: 'An information portal for restaurant menus in the vicinity of Profitak workplace.',
     icon: '/images/lunch.png',
   };
 

@@ -8,7 +8,7 @@
     "moduleResolution": "nodenext",
     "skipLibCheck": true,
     "noUncheckedIndexedAccess": true,
-    "exactOptionalPropertyTypes": true,
+    // "exactOptionalPropertyTypes": true,
     "types": ["react/experimental"],
     "jsx": "react-jsx",
 
