@@ -20,8 +20,6 @@ COPY tsconfig.json .
 COPY tailwind.config.js .
 COPY postcss.config.js .
 
-RUN ls -l
-
 RUN yarn build
 
 # COPY httpd.conf dist/
@@ -41,9 +39,7 @@ RUN [ -d "/app/dist" ] || exit 1
 
 # COPY --from=builder /app/dist .
 
-# RUN ls -l
-
-# COPY --from=builder /app/dist .
+# COPY --from=builder /app/dist/public .
 
 # RUN ls -l
 
@@ -54,5 +50,5 @@ RUN [ -d "/app/dist" ] || exit 1
 CMD ["yarn", "start"]
 
 # Health check to verify application is running
-HEALTHCHECK --interval=30s CMD wget -qO- http://localhost:5000 || exit 1
+# HEALTHCHECK --interval=30s CMD wget -qO- http://localhost:5000 || exit 1
 

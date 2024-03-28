@@ -5,6 +5,7 @@
     "downlevelIteration": true,
     "esModuleInterop": true,
     "module": "nodenext",
+    "moduleResolution": "nodenext",
     "skipLibCheck": true,
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
