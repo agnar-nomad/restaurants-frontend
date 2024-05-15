@@ -21,6 +21,7 @@ export type RestaurantsResponse = {
 export type Restaurant = {
     name: string,
     // TODO add ID
+    id?: number,
     url?: string,
     accepts_cards?: boolean,
     last_scrape: string,

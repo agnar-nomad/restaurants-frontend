@@ -3,22 +3,29 @@ import { Link } from 'waku';
 import RestaurantPanel from '../components/restaurant-panel.js';
 import { RestData } from '../lib/types.js';
 import { getRestaurantMenus } from '../lib/api.js';
+import { Suspense } from 'react';
+import { buddha as buddhaMenu } from '../static-data/buddha.js'
+import { naRohu as pivniceNaRohuMenu } from '../static-data/na-rohu.js'
 
 export default async function HomePage() {
-  const data = await getData()
-  const transformedData: RestData = {
-    ...data,
-    data: data.data.map(item => ({
-      ...item,
-      meals: JSON.parse(item.meals)
-    }))
-  }
 
-  const rest = transformedData.data[0];
+//   const data = await getData()
+//   const transformedData: RestData = {
+//     ...data,
+//     data: data.data.map(item => ({
+//       ...item,
+//       meals: JSON.parse(item.meals)
+//     }))
+//   }
+
+//   const rest = transformedData.data[0];
   // console.log('HomePage transformedData', transformedData);
 
   const data2 = await getRestaurantMenus();
-  const menus = data2?.data;
+
+  const data3 = await getDataStatically();
+
+  const menus = data3?.data;
 
   console.log('menus', menus);
   
@@ -29,7 +36,7 @@ export default async function HomePage() {
 
   return (
     <section>
-        <title>{data.title}</title>
+        <title>{data3.title}</title>
         {/* metadata */}
 
         <h2 className="text-2xl font-bold">Dnesni Obedy</h2>
@@ -43,14 +50,19 @@ export default async function HomePage() {
             ))
         : null}
         </div> */}
+
+        <Suspense fallback={<p>Loading data...</p>}>
+            <div className="grid gap-6 w-full">
+                {menus.length > 0 ?
+                    menus.map(restaurant => (
+                        <RestaurantPanel restaurant={restaurant} key={restaurant.name}/>
+                    ))
+                : null}
+            </div>
+
+        </Suspense>
         
-        <div className="grid gap-6 w-full">
-        {menus.length > 0 ?
-            menus.map(restaurant => (
-                <RestaurantPanel restaurant={restaurant} key={restaurant.name}/>
-            ))
-        : null}
-        </div>
+        
       
     </section>
   );
@@ -100,6 +112,21 @@ const getData = async () => {
 
   return data;
 };
+
+const getDataStatically = async () => {
+    const data = 
+    {
+      "title": 'Obedy',
+      "body": 'Hello world!',
+      "message": "success",
+      "data": [
+        {...buddhaMenu},
+        {...pivniceNaRohuMenu}
+      ]
+    }
+  
+    return data;
+  };
 
 export const getConfig = async () => {
     return {

@@ -41,6 +41,6 @@ export default function RestaurantPanelDetails({websiteUrl, address}: Restaurant
                     </Button>
                 </div>
             </CollapsibleContent>
-            </Collapsible>
+        </Collapsible>
     )
 }
