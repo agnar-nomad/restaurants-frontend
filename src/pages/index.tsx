@@ -1,25 +1,10 @@
-import { Link } from 'waku';
-
 import RestaurantPanel from '../components/restaurant-panel.js';
-import { RestData } from '../lib/types.js';
 import { getRestaurantMenus } from '../lib/api.js';
 import { Suspense } from 'react';
 import { buddha as buddhaMenu } from '../static-data/buddha.js'
 import { naRohu as pivniceNaRohuMenu } from '../static-data/na-rohu.js'
 
 export default async function HomePage() {
-
-//   const data = await getData()
-//   const transformedData: RestData = {
-//     ...data,
-//     data: data.data.map(item => ({
-//       ...item,
-//       meals: JSON.parse(item.meals)
-//     }))
-//   }
-
-//   const rest = transformedData.data[0];
-  // console.log('HomePage transformedData', transformedData);
 
 //   const data2 = await getRestaurantMenus();
 
@@ -50,16 +35,7 @@ export default async function HomePage() {
             <p>{todaysDate}</p>
         </div>
 
-        {/* <p>{data.body}</p> */}
         <br/>
-
-        {/* <div className="grid gap-6 w-full">
-        {transformedData.data.length > 0 ?
-            transformedData.data.map(rest => (
-            <RestaurantPanel rest={rest} key={rest.id}/>
-            ))
-        : null}
-        </div> */}
 
         <Suspense fallback={<p>Loading data...</p>}>
             <div className="grid gap-6 w-full">
@@ -123,7 +99,7 @@ const getData = async () => {
 const getDataStatically = async () => {
     const data = 
     {
-      "title": 'Obedy',
+      "title": 'Obedy Profitak',
       "body": 'Hello world!',
       "message": "success",
       "data": [

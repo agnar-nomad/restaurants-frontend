@@ -1,20 +1,19 @@
 
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from './ui/collapsible.js'
 import { Button } from './ui/button.js'
-import { CaretSortIcon, HomeIcon, ExternalLinkIcon, GlobeIcon, Crosshair2Icon } from '@radix-ui/react-icons'
+import { CaretSortIcon, HomeIcon, Crosshair2Icon } from '@radix-ui/react-icons'
 import { Restaurant } from '../lib/types.js'
 
 interface RestaurantPanelDetailsProps {
     websiteUrl?: Restaurant["url"]
     address?: Restaurant["address"]
     coords?: Restaurant["coordinates"]
-
 }
 export default function RestaurantPanelDetails(props: RestaurantPanelDetailsProps) {
 
-    const {websiteUrl, address, coords} = props
+    const { websiteUrl, address, coords } = props
 
-    let urlToMapyCz;
+    let urlToMapyCz: string;
     if (coords && coords.length > 0) {
         const basicUrl = new URL("https://mapy.cz/zakladni");
         basicUrl.searchParams.append("x", coords[0].toString());
@@ -29,11 +28,7 @@ export default function RestaurantPanelDetails(props: RestaurantPanelDetailsProp
         urlToMapyCz = basicUrl.href;
     } else {
         urlToMapyCz = ""
-
     }
-
-    console.log("urlToMapyCz", urlToMapyCz, "coords", !!coords, coords && coords.length > 0);
-    
 
     return (
         <Collapsible className='my-2'>
@@ -47,10 +42,6 @@ export default function RestaurantPanelDetails(props: RestaurantPanelDetailsProp
             </div>
             <CollapsibleContent className='py-4'>
                 <div className='flex gap-4 justify-evenly'>
-                    {/* <div>
-                        <p>Opening Hours / Menu Hours</p>
-                        <p>11:00 - 15:00</p>   
-                    </div> */}
 
                     <div>
                         <p>Adresa restaurace</p>
@@ -66,7 +57,6 @@ export default function RestaurantPanelDetails(props: RestaurantPanelDetailsProp
                     <Button asChild size="sm" variant="outline">
                         <a target='_blank' href={urlToMapyCz} className="flex gap-2 items-center">
                             <Crosshair2Icon className="h-4 w-4 mx-2" />
-                            {/* <ExternalLinkIcon className="h-4 w-4" /> */}
                         </a>
                     </Button>
                 </div>

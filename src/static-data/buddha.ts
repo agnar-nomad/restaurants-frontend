@@ -2,8 +2,8 @@ import { Restaurant } from "../lib/types.js";
 
 export const buddha: Restaurant = {
 
-    name: "Bhuddha",
-    // TODO add ID
+    name: "Bhuddha: Nepálská a Indická Restaurace",
+    id: 1,
     url: "http://www.indian-restaurant-buddha.cz/",
     accepts_cards: true,
     address: "Náměstí Svobody 21, Brno",

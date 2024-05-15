@@ -10,19 +10,16 @@ export default function RestaurantPanel({restaurant}: RestaurantPanelProps) {
 
     const { name, meals, address} = restaurant
 
-    // if(!restaurant.name.toLowerCase().includes("bhuddha")) return
-
     const todaysDayName = new Date().toLocaleDateString('en-GB', { weekday: 'long' })
 
     console.log( 
         "name", name, 
         // "meals", meals,
         "keys", Object.keys(meals),
-        "todaysDayName", todaysDayName
+        // "todaysDayName", todaysDayName
     )
 
     const todaysMenu = meals[todaysDayName]
-    // console.log("todaysMenu", todaysMenu);
 
     const shortAddress = address ? address.split(",")[0] : "123 Main St"
 
@@ -32,7 +29,7 @@ export default function RestaurantPanel({restaurant}: RestaurantPanelProps) {
             <p className="text-gray-500">{shortAddress}</p>
 
             {!todaysMenu || todaysMenu.length === 0 ? 
-                <p>No menu data for today</p> 
+                <p>Pro dnešní den nejsou dostupná data.</p> 
                 : 
                 <RestaurantPanelMeals menu={todaysMenu}/>
             }
