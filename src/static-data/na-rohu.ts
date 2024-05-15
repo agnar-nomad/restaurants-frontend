@@ -6,6 +6,7 @@ export const naRohu: Restaurant = {
     id: 2,
     url: "https://www.pivnicenarohu.cz/kopie-poledn%C3%AD-menu",
     accepts_cards: true,
+    address: "Divadelní 6, Brno",
     last_scrape: "",
     meals: {
         "Monday": [

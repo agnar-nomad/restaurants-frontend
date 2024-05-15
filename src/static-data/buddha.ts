@@ -6,6 +6,8 @@ export const buddha: Restaurant = {
     // TODO add ID
     url: "http://www.indian-restaurant-buddha.cz/",
     accepts_cards: true,
+    address: "Náměstí Svobody 21, Brno",
+    coordinates: [16.6075167, 49.1951957],
     last_scrape: "",
     meals: {
         "Monday": [

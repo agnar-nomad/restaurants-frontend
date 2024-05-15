@@ -24,6 +24,8 @@ export type Restaurant = {
     id?: number,
     url?: string,
     accepts_cards?: boolean,
+    address?: string,
+    coordinates?: [number, number],
     last_scrape: string,
     meals: DailyMenu
 }

@@ -21,13 +21,19 @@ export default async function HomePage() {
 //   const rest = transformedData.data[0];
   // console.log('HomePage transformedData', transformedData);
 
-  const data2 = await getRestaurantMenus();
+//   const data2 = await getRestaurantMenus();
 
   const data3 = await getDataStatically();
 
   const menus = data3?.data;
 
   console.log('menus', menus);
+
+  const todaysDate = new Date().toLocaleDateString('cs-CZ', { 
+    weekday: 'long',
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric', })
   
 
   if(!menus) {
@@ -39,7 +45,11 @@ export default async function HomePage() {
         <title>{data3.title}</title>
         {/* metadata */}
 
-        <h2 className="text-2xl font-bold">Dnesni Obedy</h2>
+        <div className='flex items-center justify-between flex-wrap'>
+            <h2 className="text-3xl font-bold">Dnešní obědy</h2>
+            <p>{todaysDate}</p>
+        </div>
+
         {/* <p>{data.body}</p> */}
         <br/>
 
@@ -61,9 +71,6 @@ export default async function HomePage() {
             </div>
 
         </Suspense>
-        
-        
-      
     </section>
   );
 };

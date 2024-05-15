@@ -1,6 +1,6 @@
 import { Restaurant } from '../lib/types.js'
 import RestaurantPanelDetails from './restaurant-panel-details.js'
-import RestaurantPanelMeal from './restaurant-panel-meals.js'
+import RestaurantPanelMeals from './restaurant-panel-meals.js'
 
 interface RestaurantPanelProps {
     restaurant: Restaurant
@@ -8,7 +8,7 @@ interface RestaurantPanelProps {
 
 export default function RestaurantPanel({restaurant}: RestaurantPanelProps) {
 
-    const { name, meals} = restaurant
+    const { name, meals, address} = restaurant
 
     // if(!restaurant.name.toLowerCase().includes("bhuddha")) return
 
@@ -24,18 +24,24 @@ export default function RestaurantPanel({restaurant}: RestaurantPanelProps) {
     const todaysMenu = meals[todaysDayName]
     // console.log("todaysMenu", todaysMenu);
 
+    const shortAddress = address ? address.split(",")[0] : "123 Main St"
+
     return (
         <article className="w-full border rounded-lg p-4 drop-shadow-sm">
             <h3 className="text-xl font-bold">{name}</h3>
-            <p className="text-gray-500">123 Main St, City, State</p>
+            <p className="text-gray-500">{shortAddress}</p>
 
             {!todaysMenu || todaysMenu.length === 0 ? 
                 <p>No menu data for today</p> 
                 : 
-                <RestaurantPanelMeal menu={todaysMenu}/>
+                <RestaurantPanelMeals menu={todaysMenu}/>
             }
 
-            <RestaurantPanelDetails websiteUrl={restaurant.url}/>
+            <RestaurantPanelDetails 
+                websiteUrl={restaurant.url} 
+                address={address} 
+                coords={restaurant.coordinates}
+            />
 
         </article>
     )
