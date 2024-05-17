@@ -1,4 +1,5 @@
 import { Restaurant } from '../lib/types.js'
+import FavouriteIcon from './favourite-icon.js'
 import RestaurantPanelDetails from './restaurant-panel-details.js'
 import RestaurantPanelMeals from './restaurant-panel-meals.js'
 
@@ -25,8 +26,13 @@ export default function RestaurantPanel({restaurant}: RestaurantPanelProps) {
 
     return (
         <article className="w-full border rounded-lg p-4 drop-shadow-sm">
-            <h3 className="text-xl font-bold">{name}</h3>
-            <p className="text-gray-500">{shortAddress}</p>
+            <div className='flex justify-between'>
+                <div>
+                    <h3 className="text-xl font-bold">{name}</h3>
+                    <p className="text-gray-500">{shortAddress}</p>
+                </div>
+                <FavouriteIcon id={restaurant.id} />
+            </div>
 
             {!todaysMenu || todaysMenu.length === 0 ? 
                 <p>Pro dnešní den nejsou dostupná data.</p> 

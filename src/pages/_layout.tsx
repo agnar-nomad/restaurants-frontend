@@ -4,6 +4,7 @@ import type { ReactNode } from 'react';
 import Header from '../components/header.js';
 import Footer from '../components/footer.js';
 import { ThemeProvider } from '../contexts/theme-provider.js';
+import { Toaster } from "../components/ui/toaster.js"
 
 type RootLayoutProps = { children: ReactNode };
 
@@ -11,7 +12,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
   const data = await getData();
 
   return (
-    <div className="min-h-svh min-w-80 max-w-7xl mx-auto">
+    <div className="min-h-svh min-w-80 max-w-7xl mx-auto scroll-smooth motion-reduce:scroll-auto">
       <meta property="description" content={data.description} />
       <link rel="icon" type="image/png" href={data.icon} />
       <title>Obedy Profitak</title>
@@ -23,6 +24,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
             {children}
         </main>
         <Footer />
+        <Toaster />
       </ThemeProvider>
     </div>
   );
