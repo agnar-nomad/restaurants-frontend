@@ -31,10 +31,15 @@ export function ThemeProvider({
 
     const getDefaultTheme = () => {
         if (typeof window === "undefined") return defaultTheme
+        // console.log("getDefaultTheme", !!localStorage.getItem(storageKey));
+        
         return localStorage.getItem(storageKey) as Theme || defaultTheme
     }
     
     const [theme, setTheme] = useState<Theme>(getDefaultTheme())
+
+    // console.log("theme in state is: ",theme);
+    
 
     useEffect(() => {
         if(typeof window === "undefined") return
@@ -44,6 +49,8 @@ export function ThemeProvider({
         root.classList.remove("light", "dark")
 
         if (theme === "system") {
+            // console.log("theme is system");
+            
         const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
             .matches
             ? "dark"
@@ -56,10 +63,13 @@ export function ThemeProvider({
         root.classList.add(theme)
     }, [theme])
 
+
     const value = {
         theme,
         setTheme: (theme: Theme) => {
         localStorage.setItem(storageKey, theme)
+        // console.log("setting theme:", theme);
+        
         setTheme(theme)
         },
     }
