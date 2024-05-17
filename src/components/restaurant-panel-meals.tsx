@@ -7,9 +7,9 @@ interface RestaurantPanelMealsProps {
 export default function RestaurantPanelMeals({menu}: RestaurantPanelMealsProps) {
 
     return (
-        <ol className='pt-4 pb-6 space-y-2 list-inside max-w-[1100px]'>
+        <ol className='pt-4 pb-6 space-y-4 sm:space-y-2 list-inside max-w-[1100px]'>
             {menu.map((meal, idx) => (
-            <li key={meal.name} className='flex items-center justify-between'>
+            <li key={meal.name} className='flex items-center gap-6 justify-between'>
                 <div>
                     {meal.is_soup ? 
                         <span>Polévka:&nbsp;</span>
@@ -28,7 +28,7 @@ export default function RestaurantPanelMeals({menu}: RestaurantPanelMealsProps) 
                         }
                     </span>
                 </div>
-                <div className='ml-20'>{meal.price}&nbsp;Kč</div>
+                <div className='sm:ml-14'>{meal.price}&nbsp;Kč</div>
             </li>
             ))}
         </ol>

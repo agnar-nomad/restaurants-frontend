@@ -16,9 +16,7 @@ import {
 } from "./ui/dialog.js"
 import { TrashIcon, PlusIcon } from "@radix-ui/react-icons"
 import { useLocalStorage } from 'usehooks-ts'
-
-
-const nicknameStorageKey = "obedy-nickname";
+import { nicknameStorageKey } from '../lib/utils.js'
 
 
 export default function SignInWithNickname() {
@@ -61,7 +59,7 @@ export default function SignInWithNickname() {
                         <DialogHeader>
                             <DialogTitle>Nastavit přezdívku</DialogTitle>
                             <DialogDescription>
-                                Nastav si přezdívku pro Profitak Obědy. Uloží se pouze v prohlížeči.
+                                Nastav si přezdívku pro Profitak Obědy. Uloží se pouze v prohlížeči a ten si ho bude pamatovat.
                             </DialogDescription>
                         </DialogHeader>
 
@@ -75,7 +73,7 @@ export default function SignInWithNickname() {
                                     name='nickname' 
                                     ref={inputRef} 
                                     required 
-                                    minLength={3} 
+                                    minLength={5} 
                                 />
                             </div>
                             <DialogFooter className='gap-2 sm:gap-0'>

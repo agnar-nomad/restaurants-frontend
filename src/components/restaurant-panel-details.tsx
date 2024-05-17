@@ -41,7 +41,7 @@ export default function RestaurantPanelDetails(props: RestaurantPanelDetailsProp
                 <span>Zkoukni detaily</span>
             </div>
             <CollapsibleContent className='py-4'>
-                <div className='flex gap-4 justify-evenly'>
+                <div className='flex gap-4 justify-between sm:mr-16'>
 
                     <div>
                         <p>Adresa restaurace</p>
