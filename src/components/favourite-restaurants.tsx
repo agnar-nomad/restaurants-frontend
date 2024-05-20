@@ -23,7 +23,7 @@ export default function FavouriteRestaurants() {
     return (
         <div className='my-4'>
             <p className=''>Oblíbené restaurace</p>
-            <div className='w-[calc(100vw-3rem)] flex gap-2 py-2 px-1 overflow-x-auto scrollbar-thin scrollbar-track-background scrollbar-thumb-profitakOrange/30'>
+            <div className='w-[calc(100vw-3rem)] max-w-screen-xl flex gap-2 py-2 px-1 overflow-x-auto scrollbar-thin scrollbar-track-background scrollbar-thumb-profitakOrange/30'>
             {favouritesSorted.map((f,idx) => (
                 // TODO change key to real id
                 <Badge className='cursor-pointer whitespace-nowrap' key={f+""+idx}>
