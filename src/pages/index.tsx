@@ -3,6 +3,7 @@ import { getRestaurantMenus } from '../lib/api.js';
 import { Suspense } from 'react';
 import { buddha as buddhaMenu } from '../static-data/buddha.js'
 import { naRohu as pivniceNaRohuMenu } from '../static-data/na-rohu.js'
+import FavouriteRestaurants from '../components/favourite-restaurants.js';
 
 export default async function HomePage() {
 
@@ -34,8 +35,8 @@ export default async function HomePage() {
             <h2 className="text-3xl font-bold">Dnešní obědy</h2>
             <p>{todaysDate}</p>
         </div>
-
-        <br/>
+        
+        <FavouriteRestaurants/>
 
         <Suspense fallback={<p>Loading data...</p>}>
             <div className="grid gap-6 w-full">
