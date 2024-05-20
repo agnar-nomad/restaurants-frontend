@@ -31,11 +31,11 @@ export default async function HomePage() {
         <title>{data3.title}</title>
         {/* metadata */}
 
-        <div className='flex items-center justify-between flex-wrap'>
+        <div className='flex items-center justify-between flex-wrap mb-4'>
             <h2 className="text-3xl font-bold">Dnešní obědy</h2>
             <p>{todaysDate}</p>
         </div>
-        
+
         <FavouriteRestaurants/>
 
         <Suspense fallback={<p>Loading data...</p>}>
