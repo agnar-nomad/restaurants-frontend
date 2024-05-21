@@ -18,7 +18,7 @@ export default function RestaurantPanelDetails(props: RestaurantPanelDetailsProp
         const basicUrl = new URL("https://mapy.cz/zakladni");
         basicUrl.searchParams.append("x", coords[0].toString());
         basicUrl.searchParams.append("y", coords[1].toString());
-        basicUrl.searchParams.append("z", "19");
+        basicUrl.searchParams.append("z", "19"); // zoom level, empirical
 
         urlToMapyCz = basicUrl.href;
     } else if (address) {

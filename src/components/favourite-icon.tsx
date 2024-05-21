@@ -68,13 +68,12 @@ export default function FavouriteIcon({id}: FavouriteIconProps) {
         }
     }
 
-    const handleDialogClose = () => {
+    const handleCloseDialog = () => {
         setDialogOpen(false)
         const windowHeigth = window.innerHeight
         
         window.scrollTo({ top: windowHeigth - 20, behavior: 'smooth' })
     }
-
 
     return (
         <div>
@@ -97,7 +96,7 @@ export default function FavouriteIcon({id}: FavouriteIconProps) {
                         </DialogDescription>
                     </DialogHeader>
                     <DialogFooter>
-                        <Button variant="outline" onClick={handleDialogClose}>OK, zavřít</Button>
+                        <Button variant="outline" onClick={handleCloseDialog}>OK, zavřít</Button>
                     </DialogFooter>
                 </DialogContent>
             </Dialog>
