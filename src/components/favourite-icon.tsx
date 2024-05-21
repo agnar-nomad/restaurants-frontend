@@ -16,9 +16,6 @@ import {
 import { favouritesStorageKey, nicknameStorageKey } from '../lib/utils.js';
 import { useToast } from './ui/use-toast.js';
 
-const starIconSize = 6
-const starIconSizeClass = `w-${starIconSize} h-${starIconSize}`
-
 type FavouriteIconProps = {
     id: Restaurant["id"],
 }
@@ -83,11 +80,11 @@ export default function FavouriteIcon({id}: FavouriteIconProps) {
         <div>
             {isCurrentIdInFavourites ?
                 <Button variant="ghost" size="icon" onClick={handleClick}>
-                    <StarFilledIcon className={starIconSizeClass} color='#f3611e' />
+                    <StarFilledIcon className="w-6 h-6" color='#f3611e' />
                 </Button>
             :
                 <Button variant="ghost" size="icon" onClick={handleClick}>
-                    <StarIcon className={starIconSizeClass} />
+                    <StarIcon className="w-6 h-6" />
                 </Button>
             }
             {dialogOpen &&

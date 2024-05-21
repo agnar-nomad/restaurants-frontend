@@ -7,7 +7,9 @@ import { Badge } from './ui/badge.js'
 
 export default function FavouriteRestaurants() {
 
-    const favourites = useReadLocalStorage<number[]>(favouritesStorageKey)
+    const favourites = useReadLocalStorage<number[]>(favouritesStorageKey, {
+        initializeWithValue: false
+    })
 
     if(!favourites || favourites.length === 0) return null
 
