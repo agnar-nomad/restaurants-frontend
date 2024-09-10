@@ -7,7 +7,7 @@ WORKDIR /app
 
 COPY package.json .
 
-COPY yarn.lock .
+# COPY yarn.lock .
 
 RUN yarn install
 
@@ -28,7 +28,7 @@ RUN ls -l
 
 RUN cd dist/ && ls -l
 
-EXPOSE 5000
+EXPOSE 4268
 
 # Check if build succeeded
 RUN [ -d "/app/dist" ] || exit 1
