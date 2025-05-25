@@ -5,8 +5,8 @@ import { CaretSortIcon, HomeIcon, Crosshair2Icon } from '@radix-ui/react-icons'
 import { Restaurant } from '../lib/types.js'
 
 interface RestaurantPanelDetailsProps {
-    websiteUrl?: Restaurant["url"]
-    address?: Restaurant["address"]
+    websiteUrl: Restaurant["url"]
+    address: Restaurant["address"]
     coords?: Restaurant["coordinates"]
 }
 export default function RestaurantPanelDetails(props: RestaurantPanelDetailsProps) {
@@ -14,16 +14,16 @@ export default function RestaurantPanelDetails(props: RestaurantPanelDetailsProp
     const { websiteUrl, address, coords } = props
 
     let urlToMapyCz: string;
-    if (coords && coords.length > 0) {
+    if (address) {
+        const basicUrl = new URL("https://mapy.cz/zakladni");
+        basicUrl.searchParams.append("q", address);
+
+        urlToMapyCz = basicUrl.href;
+    } else if (coords && coords.length > 0) {
         const basicUrl = new URL("https://mapy.cz/zakladni");
         basicUrl.searchParams.append("x", coords[0].toString());
         basicUrl.searchParams.append("y", coords[1].toString());
         basicUrl.searchParams.append("z", "19"); // zoom level, empirical
-
-        urlToMapyCz = basicUrl.href;
-    } else if (address) {
-        const basicUrl = new URL("https://mapy.cz/zakladni");
-        basicUrl.searchParams.append("q", address);
 
         urlToMapyCz = basicUrl.href;
     } else {
@@ -49,12 +49,12 @@ export default function RestaurantPanelDetails(props: RestaurantPanelDetailsProp
                     </div>
 
                     <Button asChild size="sm" variant="outline">
-                        <a target='_blank' href={websiteUrl || ""}>
+                        <a target='_blank' href={websiteUrl}>
                             <HomeIcon className="h-4 w-4 mx-2" />
                         </a>
                     </Button>                    
 
-                    <Button asChild size="sm" variant="outline">
+                    <Button asChild size="sm" variant="outline" disabled={!urlToMapyCz}>
                         <a target='_blank' href={urlToMapyCz} className="flex gap-2 items-center">
                             <Crosshair2Icon className="h-4 w-4 mx-2" />
                         </a>

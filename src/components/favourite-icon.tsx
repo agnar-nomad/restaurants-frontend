@@ -17,13 +17,13 @@ import { favouritesStorageKey, nicknameStorageKey } from '../lib/utils.js';
 import { useToast } from './ui/use-toast.js';
 
 type FavouriteIconProps = {
-    id: Restaurant["id"],
+    name: Restaurant["name"],
 }
 
-export default function FavouriteIcon({id}: FavouriteIconProps) {
+export default function FavouriteIcon({name}: FavouriteIconProps) {
     const [mounted, setMounted] = useState(false)
     const [dialogOpen, setDialogOpen] = useState(false)
-    const [favourites, setFavourites, removeFavourites] = useLocalStorage<number[]>(favouritesStorageKey, [])
+    const [favourites, setFavourites] = useLocalStorage<string[]>(favouritesStorageKey, [])
     const isLoggedIn = useReadLocalStorage<string>(nicknameStorageKey)
 
     const { toast } = useToast()
@@ -33,35 +33,35 @@ export default function FavouriteIcon({id}: FavouriteIconProps) {
     }, [])
 
     const handleAddFavourite = () => {
-        if (isLoggedIn && id) {
-            if(favourites.includes(id)) return
+        if (isLoggedIn && name) {
+            if(favourites.includes(name)) return
 
-            setFavourites([...favourites, id])
+            setFavourites([...favourites, name])
 
             toast({
-                title: 'Restaurace přidána',
+                title: 'Přidáno',
                 description: 'Restaurace byla přidána mezi oblíbené.',
             })
         }
     }
 
     const handleRemoveFavourite = () => {
-        if (isLoggedIn && id) {
-            const newFavourites = favourites.filter((favourite) => favourite !== id)
+        if (isLoggedIn && name) {
+            const newFavourites = favourites.filter((favourite) => favourite !== name)
             setFavourites([...newFavourites])
 
             toast({
-                title: 'Restaurace odebrána',
+                title: 'Odebráno',
                 description: 'Restaurace byla odebrána ze seznamu oblíbených.',
             })
         }
     }
 
-    const isCurrentIdInFavourites = isLoggedIn && id && favourites.includes(id)
+    const isCurrentNameInFavourites = isLoggedIn && name && favourites.includes(name)
 
     const handleClick = () => {
         if (isLoggedIn) {
-            if (isCurrentIdInFavourites) {
+            if (isCurrentNameInFavourites) {
                 handleRemoveFavourite()
             } else {
                 handleAddFavourite()
@@ -77,7 +77,6 @@ export default function FavouriteIcon({id}: FavouriteIconProps) {
         const windowHeigth = window.innerHeight
         
         window.scrollTo({ top: windowHeigth - 20, behavior: 'smooth' })
-        // TODO does this work properly?
     }
 
     // Don't render the icon until we've mounted on the client
@@ -91,9 +90,9 @@ export default function FavouriteIcon({id}: FavouriteIconProps) {
                 variant="ghost" 
                 size="icon" 
                 onClick={handleClick}
-                aria-label={isCurrentIdInFavourites ? 'Odebrat z oblíbených' : 'Přidat k oblíbeným'}
+                aria-label={isCurrentNameInFavourites ? 'Odebrat z oblíbených' : 'Přidat k oblíbeným'}
             >
-                {isCurrentIdInFavourites ? (
+                {isCurrentNameInFavourites ? (
                     <StarFilledIcon className="w-6 h-6" color='#f3611e' />
                 ) : (
                     <StarIcon className="w-6 h-6" />
