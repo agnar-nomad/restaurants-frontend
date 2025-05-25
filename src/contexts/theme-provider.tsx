@@ -30,48 +30,44 @@ export function ThemeProvider({
   ...props
 }: ThemeProviderProps) {
 
-    const getDefaultTheme = () => {
-        if (typeof window === "undefined") return defaultTheme
-        // console.log("getDefaultTheme", !!localStorage.getItem(storageKey));
-        
-        return localStorage.getItem(storageKey) as Theme || defaultTheme
-    }
-    
-    const [theme, setTheme] = useState<Theme>(getDefaultTheme())
+    const [mounted, setMounted] = useState(false)
+    const [theme, setTheme] = useState<Theme>(defaultTheme)
 
-    // console.log("theme in state is: ",theme);
-    
+    // After mounting, we have access to the theme
+    useEffect(() => {
+        setMounted(true)
+        const storedTheme = localStorage.getItem(storageKey) as Theme | null
+        if (storedTheme) {
+            setTheme(storedTheme)
+        }
+    }, [])
 
     useEffect(() => {
-        if(typeof window === "undefined") return
+        if (!mounted) return
         
         const root = window.document.documentElement
-
         root.classList.remove("light", "dark")
 
         if (theme === "system") {
-            // console.log("theme is system");
-            
-        const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
-            .matches
-            ? "dark"
-            : "light"
-
-        root.classList.add(systemTheme)
-        return
+            const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
+                .matches
+                ? "dark"
+                : "light"
+            root.classList.add(systemTheme)
+            return
         }
 
         root.classList.add(theme)
-    }, [theme])
+    }, [theme, mounted])
 
 
     const value = {
-        theme,
-        setTheme: (theme: Theme) => {
-        localStorage.setItem(storageKey, theme)
-        // console.log("setting theme:", theme);
-        
-        setTheme(theme)
+        theme: mounted ? theme : defaultTheme, // Use default theme during SSR
+        setTheme: (newTheme: Theme) => {
+            if (mounted) {
+                localStorage.setItem(storageKey, newTheme)
+                setTheme(newTheme)
+            }
         },
     }
 

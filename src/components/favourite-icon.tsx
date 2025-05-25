@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { StarIcon, StarFilledIcon } from "@radix-ui/react-icons"
 import { Restaurant } from '../lib/types.js';
 import { useLocalStorage, useReadLocalStorage } from 'usehooks-ts';
@@ -21,12 +21,16 @@ type FavouriteIconProps = {
 }
 
 export default function FavouriteIcon({id}: FavouriteIconProps) {
-
+    const [mounted, setMounted] = useState(false)
     const [dialogOpen, setDialogOpen] = useState(false)
     const [favourites, setFavourites, removeFavourites] = useLocalStorage<number[]>(favouritesStorageKey, [])
     const isLoggedIn = useReadLocalStorage<string>(nicknameStorageKey)
 
     const { toast } = useToast()
+
+    useEffect(() => {
+        setMounted(true)
+    }, [])
 
     const handleAddFavourite = () => {
         if (isLoggedIn && id) {
@@ -73,19 +77,28 @@ export default function FavouriteIcon({id}: FavouriteIconProps) {
         const windowHeigth = window.innerHeight
         
         window.scrollTo({ top: windowHeigth - 20, behavior: 'smooth' })
+        // TODO does this work properly?
+    }
+
+    // Don't render the icon until we've mounted on the client
+    if (!mounted) {
+        return <Button variant="ghost" size="icon" aria-hidden="true" className="invisible" />
     }
 
     return (
         <div>
-            {isCurrentIdInFavourites ?
-                <Button variant="ghost" size="icon" onClick={handleClick}>
+            <Button 
+                variant="ghost" 
+                size="icon" 
+                onClick={handleClick}
+                aria-label={isCurrentIdInFavourites ? 'Odebrat z oblíbených' : 'Přidat k oblíbeným'}
+            >
+                {isCurrentIdInFavourites ? (
                     <StarFilledIcon className="w-6 h-6" color='#f3611e' />
-                </Button>
-            :
-                <Button variant="ghost" size="icon" onClick={handleClick}>
+                ) : (
                     <StarIcon className="w-6 h-6" />
-                </Button>
-            }
+                )}
+            </Button>
             {dialogOpen &&
                 <Dialog open={dialogOpen}>
                 <DialogContent className="sm:max-w-[470px]">

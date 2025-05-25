@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Button } from "./ui/button.js"
 import { Input } from "./ui/input.js"
 import { Label } from "./ui/label.js"
@@ -20,9 +20,13 @@ import { nicknameStorageKey } from '../lib/utils.js'
 
 
 export default function SignInWithNickname() {
-
+    const [mounted, setMounted] = useState(false)
     const [nickname, setNickname, removeNickname] = useLocalStorage<string>(nicknameStorageKey, "")
     const inputRef = useRef<HTMLInputElement>(null)
+
+    useEffect(() => {
+        setMounted(true)
+    }, [])
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -38,8 +42,18 @@ export default function SignInWithNickname() {
 
     const handleRemove = () => removeNickname()
 
+    // Don't render anything until we've mounted on the client
+    if (!mounted) {
+        return (
+            <div className='flex items-center gap-2'>
+                <span>Přezdívka:</span>
+                <span className='w-24 h-6 bg-gray-200 dark:bg-gray-700 rounded animate-pulse' />
+            </div>
+        )
+    }
+
     return (
-        <div className='flex  items-center gap-2'>
+        <div className='flex items-center gap-2'>
             <span>Přezdívka:</span>
             {nickname ? 
                 <span>{nickname}</span>
