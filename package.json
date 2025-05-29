@@ -7,7 +7,7 @@
     "dev": "waku dev",
     "build": "waku build",
     "start": "waku start",
-    "deploy": "yarn vercel"
+    "deploy": "yarn vercel --prod"
   },
   "dependencies": {
     "@radix-ui/react-alert-dialog": "^1.0.5",
