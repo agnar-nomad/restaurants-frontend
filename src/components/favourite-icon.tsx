@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import { StarIcon, StarFilledIcon } from "@radix-ui/react-icons"
+import { Star, Sparkles } from "lucide-react"
 import { Restaurant } from '../lib/types.js';
 import { useLocalStorage, useReadLocalStorage } from 'usehooks-ts';
 import { Button } from './ui/button.js';
@@ -93,9 +93,9 @@ export default function FavouriteIcon({name}: FavouriteIconProps) {
                 aria-label={isCurrentNameInFavourites ? 'Odebrat z oblíbených' : 'Přidat k oblíbeným'}
             >
                 {isCurrentNameInFavourites ? (
-                    <StarFilledIcon className="w-6 h-6" color='#f3611e' />
+                    <Sparkles className="w-6 h-6" color='#f3611e' />
                 ) : (
-                    <StarIcon className="w-6 h-6" />
+                    <Star className="w-6 h-6" color='#bbb' />
                 )}
             </Button>
             {dialogOpen &&

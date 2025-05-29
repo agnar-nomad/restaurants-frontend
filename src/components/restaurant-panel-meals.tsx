@@ -8,23 +8,22 @@ interface RestaurantPanelMealsProps {
 
 export default function RestaurantPanelMeals({scrapeData}: RestaurantPanelMealsProps) {
 
-    const { content, scrapedAt } = scrapeData
-    const menu = content || []
+    const { meals = [], scrapedAt } = scrapeData
 
     const today = dayjs()
     const scrapedAtDate = dayjs(scrapedAt)
     const isScrapeFresh = scrapedAtDate.isSame(today, 'day')
 
     return (
-        <ol className={cn(isScrapeFresh ? "" : 'opacity-25', 'pt-4 pb-6 space-y-4 sm:space-y-2 list-inside max-w-[1100px]')}>
-            
-            {isScrapeFresh ? null : (
-                <p className='text-sm text-red-400'>
-                    Vypadá to, že zde máme stará data. Poslední scrape: {scrapedAtDate.format('DD.MM.YYYY HH:mm')}
-                </p>
-            )}
+        <>
+        {isScrapeFresh ? null : (
+            <p className='text-sm text-red-400'>
+                Vypadá to, že zde máme stará data. Poslední scrape: {scrapedAtDate.format('DD.MM.YYYY HH:mm')}
+            </p>
+        )}
 
-            {menu.map((meal) => (
+        <ol className={cn(isScrapeFresh ? "" : 'opacity-35', 'pt-4 pb-6 space-y-4 sm:space-y-2 list-inside max-w-[1100px]')}>
+            {meals.map((meal) => (
                 <li key={meal.name} className='flex gap-6 justify-between'>
                     <div>
                     {meal.is_soup ? (
@@ -47,6 +46,7 @@ export default function RestaurantPanelMeals({scrapeData}: RestaurantPanelMealsP
                 </li>
             ))}
         </ol>
+        </>
     )
 }
 
@@ -54,7 +54,7 @@ const MealDescription = ({description}: {description?: Meal["description"]}) => 
     if (!description) return null
 
     return (
-        <span className='text-gray-500'>
+        <span className='text-gray-400'>
             {"(" + description + ")"}
         </span>
     )
@@ -74,7 +74,7 @@ const MealAllergens = ({allergens}: {allergens?: Meal["allergens"]}) => {
     if (!allergens || allergens.length === 0) return null
 
     return (
-        <span className='text-gray-500 whitespace-nowrap'>
+        <span className='text-gray-400 whitespace-nowrap'>
             [ A: {allergens.join(", ")} ]
         </span>
     )

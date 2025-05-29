@@ -1,7 +1,9 @@
-import { Restaurant, RestaurantWithScrapeData } from '../lib/types.js'
+import { RestaurantWithScrapeData } from '../lib/types.js'
 import FavouriteIcon from './favourite-icon.js'
 import RestaurantPanelDetails from './restaurant-panel-details.js'
 import RestaurantPanelMeals from './restaurant-panel-meals.js'
+import { CreditCard, HandCoins, TriangleAlert} from 'lucide-react'
+
 
 interface RestaurantPanelProps {
     restaurant: RestaurantWithScrapeData
@@ -9,7 +11,7 @@ interface RestaurantPanelProps {
 
 export default function RestaurantPanel({restaurant}: RestaurantPanelProps) {
 
-    const { name, latestData, address} = restaurant
+    const { name, latestData, address, acceptsCards } = restaurant
 
     const shortAddress = address ? address.split(",")[0] : "123 Main St"
 
@@ -17,14 +19,23 @@ export default function RestaurantPanel({restaurant}: RestaurantPanelProps) {
         <article className="w-full border rounded-lg p-4 drop-shadow-sm">
             <div className='flex justify-between'>
                 <div>
-                    <h3 className="text-xl font-bold">{name}</h3>
+                    <h3 className="text-xl font-bold">
+                        <span className='flex items-center gap-3'>
+                            {name}
+                            <HandCoins className="w-4 h-4" />
+                            {acceptsCards && <CreditCard className="w-4 h-4" />}
+                        </span>
+                    </h3>
                     <p className="text-gray-500">{shortAddress}</p>
                 </div>
                 <FavouriteIcon name={restaurant.name} />
             </div>
 
-            {!latestData || latestData?.content?.length === 0 ? 
-                <p>Pro dnešní den nejsou dostupná data.</p> 
+            {!latestData || latestData?.meals?.length === 0 ? 
+                <p className='flex gap-1 items-center'>
+                    <TriangleAlert className="w-4 h-4" />&nbsp;
+                    Pro dnešní den nejsou dostupná data.
+                </p> 
                 : 
                 <RestaurantPanelMeals scrapeData={latestData}/>
             }

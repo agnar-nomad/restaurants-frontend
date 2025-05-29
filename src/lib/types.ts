@@ -5,7 +5,7 @@ export type Restaurant = {
     name: string,
     url: string,
     address: string,
-    accepts_cards?: boolean,
+    acceptsCards?: boolean,
     coordinates?: [number, number],
     createdAt: string,
     updatedAt: string
@@ -14,7 +14,7 @@ export type Restaurant = {
 export type ScrapeData = {
     id: number,
     restaurant_id: number,
-    content?: Meal[] 
+    meals?: Meal[]
     scrapedAt: string,
 }
 

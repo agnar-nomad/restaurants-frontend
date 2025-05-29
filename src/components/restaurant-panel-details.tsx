@@ -1,7 +1,7 @@
 
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from './ui/collapsible.js'
 import { Button } from './ui/button.js'
-import { CaretSortIcon, HomeIcon, Crosshair2Icon } from '@radix-ui/react-icons'
+import { ChevronsUpDown, House, MapPinned } from 'lucide-react'
 import { Restaurant } from '../lib/types.js'
 
 interface RestaurantPanelDetailsProps {
@@ -31,32 +31,32 @@ export default function RestaurantPanelDetails(props: RestaurantPanelDetailsProp
     }
 
     return (
-        <Collapsible className='my-2'>
+        <Collapsible className='my-2 max-w-[1100px]'>
             <div className='flex gap-2 items-center'>
                 <CollapsibleTrigger asChild>
                     <Button variant="outline" size="sm">
-                        <CaretSortIcon className="h-4 w-4" />
+                        <ChevronsUpDown className="h-4 w-4" />
                     </Button>
                 </CollapsibleTrigger>
                 <span>Zkoukni detaily</span>
             </div>
             <CollapsibleContent className='py-4'>
-                <div className='flex gap-4 justify-between sm:mr-16'>
+                <div className='flex gap-4 justify-between md:mr-12'>
 
                     <div>
-                        <p>Adresa restaurace</p>
-                        <p>{address}</p>   
+                        <p className='text-gray-400'>Adresa restaurace</p>
+                        <p className='font-bold'>{address}</p>   
                     </div>
 
                     <Button asChild size="sm" variant="outline">
                         <a target='_blank' href={websiteUrl}>
-                            <HomeIcon className="h-4 w-4 mx-2" />
+                            <House className="h-4 w-4 mx-2" />
                         </a>
                     </Button>                    
 
                     <Button asChild size="sm" variant="outline" disabled={!urlToMapyCz}>
                         <a target='_blank' href={urlToMapyCz} className="flex gap-2 items-center">
-                            <Crosshair2Icon className="h-4 w-4 mx-2" />
+                            <MapPinned className="h-4 w-4 mx-2" />
                         </a>
                     </Button>
                 </div>

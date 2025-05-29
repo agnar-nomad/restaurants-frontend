@@ -1,4 +1,5 @@
 import { RestaurantsResponse } from "./types.js";
+import { backendUrl } from "./utils.js";
 
 
 export async function getRestaurantMenus() {
@@ -6,7 +7,8 @@ export async function getRestaurantMenus() {
         const controller = new AbortController();
         // const id = setTimeout(() => controller.abort(), 5000);
 
-        const response = await fetch('http://localhost:4141/restaurants', {
+        // const response = await fetch(`http://localhost:4141/restaurants`, {
+        const response = await fetch(`${backendUrl}/restaurants`, {
             signal: controller.signal
         });
         // clearTimeout(id);

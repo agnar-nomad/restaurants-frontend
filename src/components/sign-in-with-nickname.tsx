@@ -14,7 +14,7 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "./ui/dialog.js"
-import { TrashIcon, PlusIcon } from "@radix-ui/react-icons"
+import { Trash, PlusIcon } from "lucide-react"
 import { useLocalStorage } from 'usehooks-ts'
 import { nicknameStorageKey } from '../lib/utils.js'
 
@@ -104,7 +104,7 @@ export default function SignInWithNickname() {
             }
             {nickname ? 
                 <Button variant="ghost" size="sm" onClick={handleRemove}>
-                    <TrashIcon color='#7f152e' className='w-5 h-5' /> 
+                    <Trash color='#7f152e' className='w-5 h-5' /> 
                 </Button>
             : 
                 null
