@@ -1,5 +1,5 @@
 import { ModeToggle } from "./dark-mode-toggle.js";
-import SignInWithNickname from "./sign-in-with-nickname.js";
+// import SignInWithNickname from "./sign-in-with-nickname.js";
 
 export default function Footer() {
   return (
@@ -10,7 +10,7 @@ export default function Footer() {
             <a href="https://waku.gg/" target="_blank" rel="noreferrer" className="underline underline-offset-2">Waku</a>
         </div>
         <ModeToggle />
-        <SignInWithNickname/>
+        {/* <SignInWithNickname/> */}
 
     </footer>
   );

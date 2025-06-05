@@ -48,14 +48,14 @@ export default function RestaurantPanelDetails(props: RestaurantPanelDetailsProp
                         <p className='font-bold'>{address}</p>   
                     </div>
 
-                    <Button asChild size="sm" variant="outline">
+                    <Button asChild size="sm" variant="outline" title="Webová stránka restaurace">
                         <a target='_blank' href={websiteUrl}>
                             <House className="h-4 w-4 mx-2" />
                         </a>
                     </Button>                    
 
-                    <Button asChild size="sm" variant="outline" disabled={!urlToMapyCz}>
-                        <a target='_blank' href={urlToMapyCz} className="flex gap-2 items-center">
+                    <Button asChild size="sm" variant="outline" disabled={!urlToMapyCz} title={urlToMapyCz ? "Mapa restaurace" : "Není zadaná adresa nebo souřadnice"}>
+                        <a target='_blank' href={urlToMapyCz}>
                             <MapPinned className="h-4 w-4 mx-2" />
                         </a>
                     </Button>

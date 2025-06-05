@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Star, Sparkles } from "lucide-react"
 import { Restaurant } from '../lib/types.js';
 import { useLocalStorage, useReadLocalStorage } from 'usehooks-ts';
@@ -13,7 +13,7 @@ import {
     DialogHeader,
     DialogTitle,
 } from "./ui/dialog.js"
-import { favouritesStorageKey, nicknameStorageKey } from '../lib/utils.js';
+import { favouritesStorageKey, nicknameStorageKey } from '../lib/config.js';
 import { useToast } from './ui/use-toast.js';
 
 type FavouriteIconProps = {

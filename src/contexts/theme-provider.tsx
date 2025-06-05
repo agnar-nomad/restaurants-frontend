@@ -1,7 +1,7 @@
 'use client'
 
 import { createContext, useContext, useEffect, useState } from "react"
-import { darkModeStorageKey } from "../lib/utils.js"
+import { darkModeStorageKey } from "../lib/config.js"
 
 type Theme = "dark" | "light" | "system"
 

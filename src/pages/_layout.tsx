@@ -16,7 +16,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
     <div className="min-h-svh min-w-80 max-w-7xl mx-auto scroll-smooth motion-reduce:scroll-auto">
       <meta property="description" content={data.description} />
       <link rel="icon" type="image/png" href={data.icon} />
-      <title>Obedy Profitak</title>
+      <title>Obědy Profitak</title>
       {/* metadata */}
       
       <ThemeProvider>

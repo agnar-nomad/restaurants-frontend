@@ -16,7 +16,7 @@ import {
 } from "./ui/dialog.js"
 import { Trash, PlusIcon } from "lucide-react"
 import { useLocalStorage } from 'usehooks-ts'
-import { nicknameStorageKey } from '../lib/utils.js'
+import { nicknameStorageKey } from '../lib/config.js'
 
 
 export default function SignInWithNickname() {

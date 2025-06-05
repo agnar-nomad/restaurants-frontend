@@ -1,23 +1,20 @@
 import { RestaurantsResponse } from "./types.js";
-import { backendUrl } from "./utils.js";
-
+import { backendUrl } from "./config.js";
+import { fetchWithTimeout } from "./utils.js";
 
 export async function getRestaurantMenus() {
     try {
-        const controller = new AbortController();
-        // const id = setTimeout(() => controller.abort(), 5000);
-
-        // const response = await fetch(`http://localhost:4141/restaurants`, {
-        const response = await fetch(`${backendUrl}/restaurants`, {
-            signal: controller.signal
-        });
-        // clearTimeout(id);
-        // TODO handle timeout with signal
+        const localUrl = `http://localhost:4141/restaurants`;
+        const response = await fetchWithTimeout(localUrl, {}, 6000)
+        
+        // const url = `${backendUrl}/restaurants`;
+        // const response = await fetchWithTimeout(url, {}, 6000);
+        
         const data = await response.json();
         return data as RestaurantsResponse;
         
     } catch (error) {
         console.error(error);
-        return
+        return []
     }
 }

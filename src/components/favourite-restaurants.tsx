@@ -1,8 +1,7 @@
 'use client'
 
-import React from 'react'
 import { useReadLocalStorage } from 'usehooks-ts'
-import { favouritesStorageKey } from '../lib/utils.js'
+import { favouritesStorageKey } from '../lib/config.js'
 import { Badge } from './ui/badge.js'
 
 export default function FavouriteRestaurants() {

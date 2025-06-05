@@ -17,7 +17,7 @@ export default function RestaurantPanelMeals({scrapeData}: RestaurantPanelMealsP
     return (
         <>
         {isScrapeFresh ? null : (
-            <p className='text-sm text-red-400'>
+            <p className='text-sm font-bold text-red-400'>
                 Vypadá to, že zde máme stará data. Poslední scrape: {scrapedAtDate.format('DD.MM.YYYY HH:mm')}
             </p>
         )}
@@ -50,7 +50,7 @@ export default function RestaurantPanelMeals({scrapeData}: RestaurantPanelMealsP
     )
 }
 
-const MealDescription = ({description}: {description?: Meal["description"]}) => {
+const MealDescription = ({description}: {description: Meal["description"]}) => {
     if (!description) return null
 
     return (
@@ -60,7 +60,7 @@ const MealDescription = ({description}: {description?: Meal["description"]}) => 
     )
 }
 
-const MealPrice = ({price}: {price?: Meal["price"]}) => {
+const MealPrice = ({price}: {price: Meal["price"]}) => {
     if (!price || price <= 0) return null
 
     return (
@@ -70,7 +70,7 @@ const MealPrice = ({price}: {price?: Meal["price"]}) => {
     )
 }
 
-const MealAllergens = ({allergens}: {allergens?: Meal["allergens"]}) => {
+const MealAllergens = ({allergens}: {allergens: Meal["allergens"]}) => {
     if (!allergens || allergens.length === 0) return null
 
     return (

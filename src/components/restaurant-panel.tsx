@@ -1,8 +1,9 @@
 import { RestaurantWithScrapeData } from '../lib/types.js'
-import FavouriteIcon from './favourite-icon.js'
+// import FavouriteIcon from './favourite-icon.js'
 import RestaurantPanelDetails from './restaurant-panel-details.js'
 import RestaurantPanelMeals from './restaurant-panel-meals.js'
 import { CreditCard, HandCoins, TriangleAlert} from 'lucide-react'
+import CustomTooltip from './custom-tooltip.js'
 
 
 interface RestaurantPanelProps {
@@ -22,13 +23,19 @@ export default function RestaurantPanel({restaurant}: RestaurantPanelProps) {
                     <h3 className="text-xl font-bold">
                         <span className='flex items-center gap-3'>
                             {name}
-                            <HandCoins className="w-4 h-4" />
-                            {acceptsCards && <CreditCard className="w-4 h-4" />}
+                            <CustomTooltip content="Platba v hotovosti">
+                                <HandCoins className="w-4 h-4" />
+                            </CustomTooltip>
+                            {acceptsCards && (
+                                <CustomTooltip content="Platba kartou">
+                                    <CreditCard className="w-4 h-4" />
+                                </CustomTooltip>
+                            )}
                         </span>
                     </h3>
                     <p className="text-gray-500">{shortAddress}</p>
                 </div>
-                <FavouriteIcon name={restaurant.name} />
+                {/* <FavouriteIcon name={restaurant.name} /> */}
             </div>
 
             {!latestData || latestData?.meals?.length === 0 ? 
