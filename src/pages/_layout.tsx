@@ -3,7 +3,6 @@ import '../styles.css';
 import type { ReactNode } from 'react';
 import Header from '../components/header.js';
 import Footer from '../components/footer.js';
-import { Analytics as VercelAnalytics } from "@vercel/analytics/react"
 import { ThemeProvider } from '../contexts/theme-provider.js';
 import { Toaster } from "../components/ui/toaster.js"
 
@@ -26,7 +25,6 @@ export default async function RootLayout({ children }: RootLayoutProps) {
         </main>
         <Footer />
         <Toaster />
-        <VercelAnalytics />
       </ThemeProvider>
     </div>
   );

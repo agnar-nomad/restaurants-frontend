@@ -4,7 +4,7 @@ import { fetchWithTimeout } from "./utils.js";
 
 export async function getRestaurantMenus() {
     try {
-        const localUrl = `http://localhost:4141/restaurants`;
+        const localUrl = `http://localhost:4242/restaurants`;
         const response = await fetchWithTimeout(localUrl, {}, 6000)
         
         // const url = `${backendUrl}/restaurants`;

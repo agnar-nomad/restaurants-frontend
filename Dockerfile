@@ -1,54 +1,43 @@
+# Stage 1: Build the application
 FROM node:18-alpine as builder
 
 LABEL version="0.5"
-LABEL description="This is the base docker image for the Profitak Obedy frontend React app built with Waku."
+LABEL description="Build stage for Profitak Obedy frontend React app built with Waku."
 
 WORKDIR /app
 
-COPY package.json .
+# Copy package files and install dependencies
+COPY package.json yarn.lock* ./
+RUN yarn install --frozen-lockfile
 
-# COPY yarn.lock .
+# Copy source and config files
+COPY . .
 
-RUN yarn install
-
-COPY public/ public/
-
-COPY src/ src/
-
-COPY components.json .
-COPY tsconfig.json .
-COPY tailwind.config.js .
-COPY postcss.config.js .
-
+# Build the application
 RUN yarn build
 
-# COPY httpd.conf dist/
+# Stage 2: Production image
+FROM node:18-alpine
 
-RUN ls -l
+LABEL version="0.5"
+LABEL description="Production image for Profitak Obedy frontend React app built with Waku."
 
-RUN cd dist/ && ls -l
+WORKDIR /app
 
-EXPOSE 4268
+# Copy package files and install only production dependencies
+COPY package.json yarn.lock* ./
+RUN yarn install --production --frozen-lockfile
 
-# Check if build succeeded
-RUN [ -d "/app/dist" ] || exit 1
+# Copy built assets from builder
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/public ./public
 
-# FROM httpd:alpine
+# Expose the port the app runs on
+EXPOSE 8080
 
-# WORKDIR /usr/local/apache2/htdocs/
+# Health check
+HEALTHCHECK --interval=30s --timeout=3s \
+  CMD wget -qO- http://localhost:8080 || exit 1
 
-# COPY --from=builder /app/dist .
-
-# COPY --from=builder /app/dist/public .
-
-# RUN ls -l
-
-# COPY httpd.conf /usr/local/apache2/conf/
-
-# COPY --from=builder /app/dist/public/index.html .
-
+# Start the application
 CMD ["yarn", "start"]
-
-# Health check to verify application is running
-# HEALTHCHECK --interval=30s CMD wget -qO- http://localhost:5000 || exit 1
-
